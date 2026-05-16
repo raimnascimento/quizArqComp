@@ -1,0 +1,102 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.271);
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1rem;
+}
+
+.ttl-principal {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.txt-quiz {
+    font-size: 1.3rem;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.quiz {
+    background-color: #021f47ae;
+    padding: 2rem 3rem;
+    width: 60%;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ttl-quiz {
+    font-size: 1.7rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.linha {
+    border-bottom: 2px solid darkblue;
+    width: 95%;
+    margin-bottom: 1.5rem;
+}
+
+.paragrafo-questoes {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.opcoes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.opces-resposta {
+    background-color: rgba(250, 235, 215, 0.556);
+    margin: 10px 0;
+    width: 70%;
+    padding: .6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.opces-resposta:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-quiz {
+    background-color: rgb(229, 231, 235);
+    width: fit-content;
+    padding: .8rem 1.4rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-quiz:hover {
+    background-color: rgb(12, 8, 60);
+    color: #fff;
+    transition: 0.6s;
+}
+
+.rodape {
+    text-align: center;
+    padding: 1rem 1.2rem;
+}

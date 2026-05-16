@@ -5,14 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz de Arquitetura</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="estilos/estilos.css">
 </head>
 <body>
     <header class="container-quiz"></header>
     <section class="container">
         <h2 class="ttl-principal">Olá, usuário. Bem-vindo ao ArqQuiz!</h2>
-        <p class="txt-quiz">Teste seus conhecimento sobre os principais componentes que fazem u computador funcionar. Será que você está preparado? Vamos descobrir!</p>
+        <p class="txt-quiz">Teste seus conhecimento sobre os principais componentes que fazem um computador funcionar. <br>Será que você está preparado? Vamos descobrir!</p>
+
+        <div class="quiz">
+            <h3 class="ttl-quiz">Quiz de Arquitetura de Computadores</h3>
+            <div class="linha"></div>
+            <p class="paragrafo-questoes" id="questoes">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis voluptate eveniet perferendis nostrum suscipit odit sequi fugiat, rerum pariatur iusto.</p>
+            <div class="opcoes">
+                <ul>
+                    <li class="opces-resposta" id="questao-1">Q1</li>
+                    <li class="opces-resposta" id="questao-2">Q2</li>
+                    <li class="opces-resposta" id="questao-3">Q3</li>
+                    <li class="opces-resposta" id="questao-4">Q4</li>
+                </ul>
+            </div>
+            <button onclick="validarResposta()" class="btn-quiz">Próxima questão</button>
+        </div>
     </section>
-    <footer class="rodape">Criado por Raissa Nascimento | SP Tech</footer>
+    <footer class="rodape">Criado por Raissa Nascimento | São Paulo Tech School</footer>
 </body>
 </html>
+<script>
+    let perguntas = {
+
+    }
+
+    function validarResposta() {
+
+    }
+</script>
