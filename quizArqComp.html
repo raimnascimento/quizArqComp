@@ -6,8 +6,8 @@
     <title>Quiz de Arquitetura</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="estilos/estilos.css">
 </head>
@@ -17,30 +17,272 @@
         <h2 class="ttl-principal">Olá, usuário. Bem-vindo ao ArqQuiz!</h2>
         <p class="txt-quiz">Teste seus conhecimento sobre os principais componentes que fazem um computador funcionar. <br>Será que você está preparado? Vamos descobrir!</p>
 
-        <div class="quiz">
-            <h3 class="ttl-quiz">Quiz de Arquitetura de Computadores</h3>
-            <div class="linha"></div>
-            <p class="paragrafo-questoes" id="questoes">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis voluptate eveniet perferendis nostrum suscipit odit sequi fugiat, rerum pariatur iusto.</p>
-            <div class="opcoes">
-                <ul>
-                    <li class="opces-resposta" id="questao-1">Q1</li>
-                    <li class="opces-resposta" id="questao-2">Q2</li>
-                    <li class="opces-resposta" id="questao-3">Q3</li>
-                    <li class="opces-resposta" id="questao-4">Q4</li>
-                </ul>
-            </div>
-            <button onclick="validarResposta()" class="btn-quiz">Próxima questão</button>
+        <div class="quiz" id="card_quiz">    
         </div>
     </section>
     <footer class="rodape">Criado por Raissa Nascimento | São Paulo Tech School</footer>
 </body>
 </html>
-<script>
-    let perguntas = {
 
+<script>
+    let perguntaAtual = 0;
+    let pontos = 0;
+    let respostaSelecionada = '';
+    let telaOriginal = `<h3 class="ttl-quiz">Quiz de Arquitetura de Computadores</h3>
+        <div class="linha"></div>
+        <button style="margin: auto" onclick="iniciarQuiz()" class="btn-quiz">Iniciar Quiz</button>
+        <div id="contadorQuiz"></div>`;
+    let intervaloTempo;
+
+    let quiz = [
+        {
+            pergunta: 'Sem esse componente o computador não consegue iniciar corretamente, pois contém informações importantes gravadas permanentemente.',
+            alternativas: ['RAM', 'ROM', 'CACHE', 'FLASH'],
+            correta: 'ROM'
+        },
+        {
+            pergunta: 'Qual componente do processador é considerado a central de controle?',
+            alternativas: ['ULA', 'CPU', 'RAM', 'DMA'],
+            correta: 'CPU'
+        },
+        {
+            pergunta: 'Quais são as pequenas memórias internas extremamente rápidas que auxiliam diretamente o processador?',
+            alternativas: ['FLASH', 'REGISTRADORES', 'RAM', 'EPROM'],
+            correta: 'REGISTRADORES'
+        },
+        {
+            pergunta: 'Qual componente é utilizado como uma área de acesso rápido a informações frequentemente utilizadas?',
+            alternativas: ['CACHE', 'RAM', 'ROM', 'DMA'],
+            correta: 'CACHE'
+        },
+        {
+            pergunta: 'Qual recurso é utilizado para transferência de dados sem sobrecarregar a CPU?',
+            alternativas: ['DMA', 'CACHE', 'ADDRESS BUS', 'FLASH'],
+            correta: 'DMA'
+        },
+        {
+            pergunta: 'Recebe instruções enviadas pela Unidade de Controle e manipula os dados armazenados nos registradores.',
+            alternativas: ['CPU', 'RAM', 'ULA', 'CACHE'],
+            correta: 'ULA'
+        },
+        {
+            pergunta: 'O armazenamento e acesso às informações depende da energia do computador. Após o desligamento da máquina, todas as informações armazenadas nela são perdidas.',
+            alternativas: ['RAM', 'ROM', 'FLASH', 'EPROM'],
+            correta: 'RAM'
+        },
+        {
+            pergunta: 'Possui finalidades somente de leitura, seu chip é programável e não volátil.',
+            alternativas: ['RAM', 'EPROM', 'CACHE', 'DMA'],
+            correta: 'EPROM'
+        },
+        {
+            pergunta: 'Possui um armazenamento que mantém as informações mesmo sem energia e permite atualização dos dados.',
+            alternativas: ['FLASH', 'ROM', 'RAM', 'REGISTRADORES'],
+            correta: 'FLASH'
+        },
+        {
+            pergunta: 'Funciona como um guia de localização, indicando exatamente onde uma informação deve ser encontrada ou armazenada.',
+            alternativas: ['DATA BUS', 'DMA', 'ADDRESS BUS', 'CACHE'],
+            correta: 'ADDRESS BUS'
+        },
+        {
+            pergunta: 'É o caminho responsável por transportar informações entre os componentes do computador.',
+            alternativas: ['ADDRESS BUS', 'DATA BUS', 'DMA', 'CHIP SELECT'],
+            correta: 'DATA BUS'
+        },
+        {
+            pergunta: 'Qual tipo de processador consegue dividir tarefas entre dois núcleos físicos?',
+            alternativas: ['QUAD CORE', 'DUAL CORE', 'I5', 'I7'],
+            correta: 'DUAL CORE'
+        },
+        {
+            pergunta: 'Qual é o modelo de um processador bem conhecido da linha intermediária da Intel?',
+            alternativas: ['I3', 'I5', 'I7', 'XEON'],
+            correta: 'I5'
+        },
+        {
+            pergunta: 'Qual processador é capaz de executar múltiplas tarefas simultaneamente utilizando quatro núcleos físicos?',
+            alternativas: ['DUAL CORE', 'I5', 'QUAD CORE', 'CACHE'],
+            correta: 'QUAD CORE'
+        },
+        {
+            pergunta: 'Quais memórias secundárias são utilizadas para armazenamento permanente de grandes volumes de dados?',
+            alternativas: ['RAM', 'REGISTRADORES', 'MEMÓRIAS DE MASSA', 'CACHE'],
+            correta: 'MEMÓRIAS DE MASSA'
+        },
+        {
+            pergunta: 'Qual processador da Intel é conhecido pelo alto desempenho, sendo muito utilizado para tarefas pesadas e multitarefas?',
+            alternativas: ['I3', 'I5', 'I7', 'DUAL CORE'],
+            correta: 'I7'
+        },
+        {
+            pergunta: 'Qual componente permite selecionar dispositivos específicos conectados ao mesmo barramento?',
+            alternativas: ['DMA', 'CHIP SELECT', 'DATA BUS', 'ADDRESS BUS'],
+            correta: 'CHIP SELECT'
+        }       
+    ];
+
+    function iniciarQuiz() {
+        let contador = 3;
+
+        let intervalo = setInterval(() => {
+            contadorQuiz.innerHTML = `<p style="display:block" class="numero-contador">${contador}</p>`;
+            contador--;
+
+            if (contador < 0) {
+                clearInterval(intervalo);
+                card_quiz.innerHTML = `<h3 class="ttl-quiz">Quiz de Arquitetura de Computadores</h3>
+                <div class="linha"></div>
+                <p class="paragrafo-questoes" id="questoes"></p>
+                <div class="opcoes">
+                    <ul>
+                        <li class="opces-resposta" id="questao_1" onclick="selecionarResposta(this)"></li>
+                        <li class="opces-resposta" id="questao_2" onclick="selecionarResposta(this)"></li>
+                        <li class="opces-resposta" id="questao_3" onclick="selecionarResposta(this)"></li>
+                        <li class="opces-resposta" id="questao_4" onclick="selecionarResposta(this)"></li>
+                    </ul>
+                </div>
+                <p style="display:none" id="rsp_tempo"></p>
+                <button onclick="validarResposta()" class="btn-quiz">Próxima questão</button>
+                <div class="contRelogio">
+                    <p id="relogio"></p>
+                </div>
+                `;
+                carregarPergunta();
+            }
+        }, 1500);
+    }
+
+    function carregarPergunta() {
+        let contadorTempoRsp = 10;
+        rsp_tempo.style.display = 'none';
+        rsp_tempo.innerHTML = '';
+    
+        questoes.innerHTML = quiz[perguntaAtual].pergunta;
+
+        questao_1.innerHTML = quiz[perguntaAtual].alternativas[0];
+        questao_2.innerHTML = quiz[perguntaAtual].alternativas[1];
+        questao_3.innerHTML = quiz[perguntaAtual].alternativas[2];
+        questao_4.innerHTML = quiz[perguntaAtual].alternativas[3];
+
+        respostaSelecionada = '';
+        limparCores();
+
+        intervaloTempo = setInterval(() => {
+            relogio.innerHTML = `${contadorTempoRsp}`;
+            contadorTempoRsp--;
+
+            if (contadorTempoRsp < 0) {
+                clearInterval(intervaloTempo);
+                rsp_tempo.style.display = 'block';
+                rsp_tempo.innerHTML = `Que pena! O tempo acabou, próxima pergunta.`;
+
+                if (perguntaAtual == quiz.length - 1) {
+                    rsp_tempo.innerHTML = `Que pena! O tempo acabou.`;
+                }
+                
+                setTimeout(() => {
+                    proximaPergunta();
+                }, 2000);
+            }
+        }, 1000)
+    }
+
+    function selecionarResposta(elemento) {
+        limparCores();
+
+        elemento.style.backgroundColor = '#dcdcdc';
+        respostaSelecionada = elemento.innerHTML;
+    }
+
+    function limparCores() {
+        questao_1.style.backgroundColor = '';
+        questao_2.style.backgroundColor = '';
+        questao_3.style.backgroundColor = '';
+        questao_4.style.backgroundColor = '';
     }
 
     function validarResposta() {
+        clearInterval(intervaloTempo);
+        erro = false;
 
+        if (respostaSelecionada == '') {
+            alert('Selecione uma alternativa!');
+            erro = true;
+        }
+
+        if (erro == false) {
+            if (respostaSelecionada == quiz[perguntaAtual].correta) {
+                pontos++;
+            
+                if (questao_1.innerHTML == respostaSelecionada) {
+                    questao_1.style.backgroundColor = 'green';
+                } else if (questao_2.innerHTML == respostaSelecionada) {
+                    questao_2.style.backgroundColor = 'green';
+                } else if (questao_3.innerHTML == respostaSelecionada) {
+                    questao_3.style.backgroundColor = 'green';
+                } else if (questao_4.innerHTML == respostaSelecionada) {
+                    questao_4.style.backgroundColor = 'green';
+                }
+            } else {
+                if (questao_1.innerHTML == respostaSelecionada) {
+                    questao_1.style.backgroundColor = 'red';
+                } else if (questao_2.innerHTML == respostaSelecionada) {
+                    questao_2.style.backgroundColor = 'red';
+                } else if (questao_3.innerHTML == respostaSelecionada) {
+                    questao_3.style.backgroundColor = 'red';
+                } else if (questao_4.innerHTML == respostaSelecionada) {
+                    questao_4.style.backgroundColor = 'red';
+                }
+            }
+        }
+
+        setTimeout(() => {
+            proximaPergunta();
+        }, 1000);
     }
+
+    function tentarNovamente() {
+        perguntaAtual = 0;
+        pontos = 0;
+        respostaSelecionada = '';
+        card_quiz.innerHTML = telaOriginal;
+    }
+
+    function proximaPergunta() {
+        perguntaAtual++;
+
+        if (perguntaAtual < quiz.length) {
+            carregarPergunta();
+        } else {
+            let porcentagem = (pontos / quiz.length) * 100;
+            let msgAnalise = '';
+
+            if (porcentagem < 40) {
+                msgAnalise = `É... Sua nota foi muito baixa, recomendo que você pratique um pouco mais.`;
+            } else if (porcentagem < 70) {
+                msgAnalise = `Dá para acertar um pouco mais... Tente novamente!`;
+            } else if (porcentagem < 80) {
+                msgAnalise = `Hmm, é uma boa nota, mas ainda pode melhorar!`;
+            } else if (porcentagem < 90) {
+                msgAnalise = `Arrasou! Falta pouco para acertar tudo!`;
+            } else {
+                msgAnalise = `Uau! Parabéns, você manja muito de Arquitetura de Computadores!`;
+            }
+
+            card_quiz.innerHTML = `
+            <div class="resultado-final">
+                <h2 class="titulo-resultado">QUIZ FINALIZADO!</h2>
+                <p class="resultado-info">✅ Acertos: ${pontos}</p>
+                <p class="resultado-info">❌ Erros: ${quiz.length - pontos}</p>
+                <p class="resultado-info">🎯 Porcentagem: ${porcentagem.toFixed(2)}%</p>
+                <p class="mensagem-final">${msgAnalise}</p>
+          
+                <button style="margin:auto" onclick="tentarNovamente()" class="btn-quiz">Jogar novamente</button>
+            </div>`;
+        }    
+    }
+
+    card_quiz.innerHTML = telaOriginal;
+
 </script>

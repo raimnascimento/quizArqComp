@@ -1,8 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: rgba(0, 0, 0, 0.271);
-    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle, #9d8eb7, #b5b5b5);   font-family: "Poppins", sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,15 +18,15 @@ body {
 .ttl-principal {
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     text-align: center;
     line-height: 1.5;
     margin-bottom: 0;
 }
 
 .txt-quiz {
-    font-size: 1.3rem;
-    width: 50%;
+    font-size: 1rem;
+    width: 40%;
     text-align: center;
     margin-bottom: 2rem;
     line-height: 1.6;
@@ -36,10 +35,27 @@ body {
 .quiz {
     background-color: #021f47ae;
     padding: 2rem 3rem;
-    width: 60%;
+    width: 40%;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+    border: 2px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(4px);
+    animation: aparecer 0.5s ease;
+    min-height: 300px;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .ttl-quiz {
@@ -68,7 +84,7 @@ body {
 .opces-resposta {
     background-color: rgba(250, 235, 215, 0.556);
     margin: 10px 0;
-    width: 70%;
+    width: 90%;
     padding: .6rem 1.2rem;
     border-radius: 6px;
     cursor: pointer;
@@ -79,24 +95,129 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+#rsp_tempo {
+    margin-top: 1rem;
+    text-align: center;
+    background-color: rgba(0, 217, 255, 0.12);
+    border: 2px solid #00D9FF;
+    color: #7EEBFF;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    animation: piscar 0.8s infinite;
+}
+
+@keyframes piscar {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .btn-quiz {
-    background-color: rgb(229, 231, 235);
-    width: fit-content;
-    padding: .8rem 1.4rem;
-    border-radius: 6px;
-    border: none;
-    font-weight: 600;
-    font-size: 1rem;
+    background-color: #1E3A5F;
+    color: white;
+    border: 3px solid #185691;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.8rem;
     cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 4px 4px 0px #0B1320;
+    width: 97%;
 }
 
 .btn-quiz:hover {
-    background-color: rgb(12, 8, 60);
-    color: #fff;
-    transition: 0.6s;
+    background-color: #08335c;
+    transform: translateY(-2px);
+}
+
+#contadorQuiz {
+    margin: 0 auto;
+}
+
+.btn-quiz:active {
+    transform: translateY(3px);
+    box-shadow: 2px 2px 0px #0B1320;
+}
+
+.numero-contador {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #010e2b;
+    text-shadow: 0 0 15px #4DA8FF;
+    text-align: center;
+    margin-top: 3rem;
+    font-family: "Press Start 2P", system-ui;
+}
+
+.contRelogio {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+#relogio {
+    background-color: #0b1530;
+    color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 3px solid #4da6ff;
+    box-shadow: 0 0 15px rgba(77, 166, 255, 0.5);
+}
+
+.resultado-final {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.titulo-resultado {
+    font-family: "Press Start 2P", system-ui;
+    font-size: 1.2rem;
+    color: #4DA8FF;
+    text-shadow: 0 0 10px #4DA8FF;
+    margin-bottom: 1rem;
+}
+
+.resultado-info {
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: rgba(255,255,255,0.08);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.mensagem-final {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    background-color: rgba(0,0,0,0.3);
+    padding: 1.2rem;
+    border-left: 5px solid #4da6ff;
+    border-radius: 12px;
 }
 
 .rodape {
     text-align: center;
     padding: 1rem 1.2rem;
+    font-size: .8rem;
+    font-weight: 600;
 }
