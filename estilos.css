@@ -35,7 +35,7 @@ body {
 .quiz {
     background-color: #021f47ae;
     padding: 2rem 3rem;
-    width: 40%;
+    width: 50%;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
@@ -220,4 +220,169 @@ body {
     padding: 1rem 1.2rem;
     font-size: .8rem;
     font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 5rem 1rem;
+    }
+
+    .txt-quiz {
+        width: 55%;
+    }
+
+    .quiz {
+        width: 50%;
+    }
+
+    .ttl-quiz {
+        font-size: 1.5rem;
+    }
+
+    .numero-contador {
+        font-size: 2.5rem;
+    }
+
+    #relogio {
+        font-size: 1.9rem;
+    }
+
+    #rsp_tempo {
+        font-size: 1.150rem;
+    }
+
+    .titulo-resultado {
+        font-size: 1.1rem;
+    }
+
+    .resultado-info {
+        font-size: 1rem;
+    }
+
+    .mensagem-final {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .txt-quiz {
+        width: 80%;
+    }
+
+    .quiz {
+        width: 60%;
+    }
+
+    .ttl-quiz {
+        font-size: 1.5rem;
+    }
+
+    .numero-contador {
+        font-size: 2.3rem;
+    }
+
+    #relogio {
+        font-size: 1.7rem;
+    }
+
+    #rsp_tempo {
+        font-size: 1rem;
+    }
+
+    .titulo-resultado {
+        font-size: 1rem;
+    }
+
+    .resultado-info {
+        font-size: .9rem;
+    }
+
+    .mensagem-final {
+        font-size: .9rem;
+    }
+
+    .rodape {
+        font-size: .750rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    .ttl-principal {
+        font-size: 1.2rem;
+    }
+
+    .txt-quiz {
+        width: 90%;
+        font-size: .9rem;
+    }
+
+    .ttl-quiz {
+        font-size: 1.3rem;
+    }
+
+    .numero-contador {
+        font-size: 2rem;
+    }
+
+    #relogio {
+        font-size: 1rem;
+    }
+
+    .paragrafo-questoes {
+        font-size: 1.150rem;
+    }
+
+    #rsp_tempo {
+        font-size: .950rem;
+    }
+
+    .btn-quiz {
+        font-size: .7rem;
+    }
+
+    .rodape {
+        font-size: .750rem;
+    }
+}
+
+@media screen and (max-width: 455px) {
+
+    .ttl-principal {
+        font-size: 1rem;
+    }
+
+    .txt-quiz {
+        width: 90%;
+        font-size: .8rem;
+    }
+
+    .ttl-quiz {
+        font-size: 1.1rem;
+    }
+
+    .numero-contador {
+        font-size: 1.5rem;
+    }
+
+    #relogio {
+        font-size: 1rem;
+    }
+
+    .paragrafo-questoes {
+        font-size: .950rem;
+    }
+
+    #rsp_tempo {
+        font-size: .850rem;
+    }
+
+    .btn-quiz {
+        font-size: .650rem;
+    }
+
+    .rodape {
+        font-size: .6rem;
+    }
 }
